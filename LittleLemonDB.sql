@@ -81,17 +81,33 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `LittleLemonDB`.`MenuItems`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`MenuItems` (
+  `MenuItemID` INT NOT NULL,
+  `CourseName` VARCHAR(90) NOT NULL,
+  `StarterName` VARCHAR(90) NOT NULL,
+  `DesertName` VARCHAR(90) NOT NULL,
+  PRIMARY KEY (`MenuItemID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `LittleLemonDB`.`Menu`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Menu` (
   `MenuID` INT NOT NULL,
-  `Cuisine` VARCHAR(45) NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
-  `Type` VARCHAR(45) NOT NULL,
-  `Price` DECIMAL(5,2) NOT NULL,
-  `Available` TINYINT NOT NULL,
+  `Cuisine` VARCHAR(45) NOT NULL,
+  `MenuItemID` INT NOT NULL,
   PRIMARY KEY (`MenuID`),
-  UNIQUE INDEX `MenuID_UNIQUE` (`MenuID` ASC) VISIBLE)
+  UNIQUE INDEX `MenuID_UNIQUE` (`MenuID` ASC) VISIBLE,
+  INDEX `fk_Menu_MenuItemID_idx` (`MenuItemID` ASC) VISIBLE,
+  CONSTRAINT `fk_Menu_MenuItemID`
+    FOREIGN KEY (`MenuItemID`)
+    REFERENCES `LittleLemonDB`.`MenuItems` (`MenuItemID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
