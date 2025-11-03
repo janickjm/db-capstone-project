@@ -61,7 +61,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `LittleLemonDB`.`Booking` (
   `BookingID` INT NOT NULL,
   `BookingSlot` DATETIME NOT NULL,
-  `Table` INT NOT NULL,
+  `TableNo` INT NOT NULL,
   `ClientID` INT NOT NULL,
   `StaffID` INT NOT NULL,
   PRIMARY KEY (`BookingID`),
